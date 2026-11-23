@@ -20,6 +20,9 @@ king-centralisation bonus in the endgame, and iterative deepening to
 depth 10 under an 80,000-node budget per move. Move generation is
 verified against perft: all checks match python-chess exactly,
 including en-passant, castling, promotion and pin positions.
+
+## Results
+
 Practice trial (fresh kit, 6 games vs the house gauntlet): **Elo
 1,545** — 4 wins, 1 draw, 1 loss — measured in two independent
 trial runs (trial-0 and trial-1, both 1,545), well above the 1,154

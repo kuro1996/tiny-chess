@@ -9,16 +9,21 @@ Entry for make.fun's [tiny-chess-01](https://make.fun/bounty/tiny-chess-01) on
 
 ## The engine
 
-`main.py` (4,004 bytes) plays chess on a 0x88 board: negamax with
-alpha-beta pruning and a shallow captures-only quiescence search,
-iterative deepening from depth 1 to 9, a 60,000-node cumulative budget
-per move, a transposition table for move ordering, MVV-LVA move
-ordering, root move ordering from the previous iteration, and real
-piece-square tables. Move generation is verified against perft: 18/18
-checks match python-chess exactly (the engine deliberately does not
-generate en-passant captures, a byte trade-off; every other move
-matches). Practice trial: Elo 876 (0 wins, 2 draws, 4 losses over 6
-games vs the house gauntlet).
+`main.py` (3,656 bytes, LZMA-packed from a 12,202-byte source) plays
+chess on a 0x88 board: negamax with alpha-beta pruning, principal
+variation search at the root and in the search, a history heuristic
+for quiet-move ordering, killer moves, null-move pruning, a
+transposition table, a captures-only quiescence search, incremental
+evaluation with piece-square tables, incremental Zobrist hashing,
+anti-repetition play, castling and full en-passant support, a
+king-centralisation bonus in the endgame, and iterative deepening to
+depth 10 under an 80,000-node budget per move. Move generation is
+verified against perft: all checks match python-chess exactly,
+including en-passant, castling, promotion and pin positions.
+Practice trial (fresh kit, 6 games vs the house gauntlet): **Elo
+1,545** — 4 wins, 1 draw, 1 loss — measured in two independent
+trial runs (trial-0 and trial-1, both 1,545), well above the 1,154
+practice floor. The previous version (v2) measured Elo 876.
 
 ## Run it
 
